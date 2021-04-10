@@ -7,8 +7,13 @@
 * {
   margin: 0;
   scroll-behavior: smooth;
-  /* overflow-x: hidden; */
 }
+
+/* html {
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+} */
 
 body {
   background-color: black;
@@ -47,7 +52,14 @@ nav li {
 a {
   color: var(--purple);
   text-decoration: none;
+  transform: translateY(-50px);
+  display: inline-block;
+  opacity: 0;
 }
+
+/* nav li:first-of-type a {
+  opacity: 0;
+} */
 
 a::after {
   color: var(--purple);
@@ -57,7 +69,7 @@ a::after {
 
 #splash {
   height: 100vh;
-  /* border: 1px solid red; */
+  /* scroll-snap-align: start; */
 }
 
 h1 {
@@ -69,6 +81,8 @@ h1 {
   position: absolute;
   bottom: 100px;
   left: 10px;
+  opacity: 0;
+  transform: translateY(200px);
 }
 
 /* About */
@@ -79,6 +93,7 @@ h1 {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  /* scroll-snap-align: start; */
 }
 
 .me_img_container {
@@ -119,7 +134,7 @@ h3 {
 #work {
   position: relative;
   padding: 30px 0;
-  /* border: 1px solid red; */
+  /* scroll-snap-align: start; */
 }
 img {
   width: 150px;
@@ -151,6 +166,7 @@ figcaption p {
 #contact {
   padding: 30px 0;
   height: 90vh;
+  /* scroll-snap-align: start; */
 }
 
 .logo_container {
