@@ -72,6 +72,14 @@ a::after {
   /* scroll-snap-align: start; */
 }
 
+.mouse_follower {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(white, transparent 70%);
+  border-radius: 100%;
+  pointer-events: none;
+}
+
 h1 {
   font-family: var(--font);
   font-weight: 700;
