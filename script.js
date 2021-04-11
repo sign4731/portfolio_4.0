@@ -1,13 +1,18 @@
 "use strict";
 
 window.addEventListener("DOMContentLoaded", start);
+gsap.registerPlugin(ScrollTrigger);
 
 function start() {
-  runTextAnimation();
-  startMouseFollower();
+  runStartTextAnimation();
+  aboutSectionFadeInAnimation();
+  workSectionFadeInAnimation();
+  contactSectionFadeInAnimation();
+  loadSVG();
 }
 
-function runTextAnimation() {
+function runStartTextAnimation() {
+  // To make h1 fade in from bottom and nav links fades in afterwards
   const timeline = gsap.timeline();
   timeline.to("h1", {
     duration: 1.5,
@@ -15,19 +20,7 @@ function runTextAnimation() {
     y: 0,
     ease: "back.out(1)",
   });
-  timeline.to("nav li:first-of-type a", {
-    duration: 0.7,
-    opacity: 1,
-    y: 0,
-    ease: "back.out(1)",
-  });
-  timeline.to("nav li:nth-last-of-type(2) a", {
-    duration: 0.7,
-    opacity: 1,
-    y: 0,
-    ease: "back.out(1)",
-  });
-  timeline.to("nav li:last-of-type a", {
+  timeline.to("nav a", {
     duration: 0.7,
     opacity: 1,
     y: 0,
@@ -35,27 +28,70 @@ function runTextAnimation() {
   });
 }
 
-function startMouseFollower() {
-  gsap.set(".mouse_follower", { xPercent: -50, yPercent: -50 });
-
-  const ball = document.querySelector(".mouse_follower");
-  const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-  const mouse = { x: pos.x, y: pos.y };
-  const speed = 0.35;
-
-  const xSet = gsap.quickSetter(ball, "x", "px");
-  const ySet = gsap.quickSetter(ball, "y", "px");
-
-  window.addEventListener("mousemove", (e) => {
-    mouse.x = e.x;
-    mouse.y = e.y;
+function aboutSectionFadeInAnimation() {
+  // To make about me section fade in from bottom
+  gsap.to(".about_container_to_animate", {
+    scrollTrigger: ".about_container_to_animate",
+    duration: 2,
+    opacity: 1,
+    y: 0,
   });
-  gsap.ticker.add(() => {
-    const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
+}
 
-    pos.x += (mouse.x - pos.x) * dt;
-    pos.y += (mouse.y - pos.y) * dt;
-    xSet(pos.x);
-    ySet(pos.y);
+function workSectionFadeInAnimation() {
+  // To make each figure fade in as user scrolls either up or down the page
+  ScrollTrigger.batch("figure", {
+    interval: 0.1,
+    batchMax: 0,
+    onEnter: (batch) => gsap.to(batch, { autoAlpha: 1, stagger: 0.15, overwrite: true }),
+    onLeave: (batch) => gsap.set(batch, { autoAlpha: 0, overwrite: true }),
+    onEnterBack: (batch) => gsap.to(batch, { autoAlpha: 1, stagger: 0.15, overwrite: true }),
+    onLeaveBack: (batch) => gsap.set(batch, { autoAlpha: 0, overwrite: true }),
+  });
+}
+
+function contactSectionFadeInAnimation() {
+  // gsap.to("#contact h2", {
+  //   scrollTrigger: "#contact",
+  //   duration: 2,
+  //   opacity: 1,
+  //   start: "center top",
+  // });
+  gsap.to("#contact p a", {
+    scrollTrigger: "#contact",
+    duration: 2,
+    // ease: Linear.easeNone,
+    backgroundSize: "100% 2px",
+  });
+}
+
+async function loadSVG() {
+  // Load github logo
+  let responseGithub = await fetch("svg/github_logo.svg");
+  let githubSVG = await responseGithub.text();
+  document.querySelector(".github").innerHTML = githubSVG;
+  document.querySelector(".github").style.fill = "#c09fe0";
+
+  // Load linkedin logo
+  let responseLinkedin = await fetch("svg/linkedin_logo.svg");
+  let linkedinSVG = await responseLinkedin.text();
+  document.querySelector(".linkedin").innerHTML = linkedinSVG;
+  document.querySelector(".linkedin").style.fill = "#c09fe0";
+
+  hoverOnLogos();
+}
+
+function hoverOnLogos() {
+  document.querySelectorAll("button").forEach((button) => {
+    button.addEventListener("mouseover", function () {
+      console.log("change color");
+      button.style.fill = "white";
+    });
+  });
+  document.querySelectorAll("button").forEach((button) => {
+    button.addEventListener("mouseout", function () {
+      console.log("change color");
+      button.style.fill = "#c09fe0";
+    });
   });
 }

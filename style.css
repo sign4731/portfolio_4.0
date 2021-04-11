@@ -9,12 +9,6 @@
   scroll-behavior: smooth;
 }
 
-/* html {
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-} */
-
 body {
   background-color: black;
 }
@@ -49,35 +43,34 @@ nav li {
   list-style-type: none;
 }
 
-a {
+nav a {
   color: var(--purple);
   text-decoration: none;
   transform: translateY(-50px);
   display: inline-block;
   opacity: 0;
+
+  transition: 0.3s;
+  background: linear-gradient(var(--purple), var(--purple)) bottom / 0 1px no-repeat;
+  transition: 0.5s background-size;
+  background-position: left bottom;
 }
 
-/* nav li:first-of-type a {
-  opacity: 0;
-} */
-
-a::after {
+nav a:after {
   color: var(--purple);
   text-decoration: none;
 }
+
+nav a:hover {
+  color: white;
+  transition: 0.3s;
+  background-size: 100% 1px;
+}
+
 /* Splash */
 
 #splash {
   height: 100vh;
-  /* scroll-snap-align: start; */
-}
-
-.mouse_follower {
-  width: 100px;
-  height: 100px;
-  background: radial-gradient(white, transparent 70%);
-  border-radius: 100%;
-  pointer-events: none;
 }
 
 h1 {
@@ -98,12 +91,17 @@ h1 {
 #about {
   height: 100vh;
   position: relative;
+}
+
+.about_container_to_animate {
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  /* scroll-snap-align: start; */
+  opacity: 0;
+  transform: translateY(300px);
 }
-
 .me_img_container {
   width: 200px;
   height: 200px;
@@ -142,8 +140,8 @@ h3 {
 #work {
   position: relative;
   padding: 30px 0;
-  /* scroll-snap-align: start; */
 }
+
 img {
   width: 150px;
   height: 150px;
@@ -152,15 +150,20 @@ img {
 
 h4 {
   font-family: var(--font);
-  color: white;
+  color: var(--purple);
   margin: -5px 0 0 20px;
-  /* width: 200px; */
+  background: linear-gradient(var(--purple), var(--purple)) bottom / 0 0.1em no-repeat;
+  transition: 1s background-size;
+  transition: 0.3s;
+  background-position: left bottom;
 }
 
 figure {
   display: flex;
   width: 94vw;
   margin: 70px 10px;
+  opacity: 0;
+  cursor: pointer;
 }
 
 figcaption p {
@@ -169,19 +172,21 @@ figcaption p {
   margin: 0;
 }
 
+figure:hover > figcaption h4 {
+  background-size: 10% 0.1em;
+  color: white;
+}
+
 /* Contact */
 
 #contact {
   padding: 30px 0;
   height: 90vh;
-  /* scroll-snap-align: start; */
 }
 
 .logo_container {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  margin: 30px auto;
+  justify-content: center;
 }
 
 .logo_container button {
@@ -189,72 +194,19 @@ figcaption p {
   background-color: transparent;
   color: transparent;
   cursor: pointer;
-  margin: 40px;
-}
-
-.logo_container .linkedin:hover {
-  width: 99px;
-}
-.logo_container .github:hover {
-  width: 102px;
-}
-.logo_container .mail:hover {
-  text-align: center;
-  background-image: none;
-  color: white;
+  margin: 30px 0 0 30px;
   transition: 0.3s;
-  font-family: var(--font);
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
 }
-.logo_container button:hover {
-  background-image: none;
-  width: 100px;
-  height: 100px;
-  background-color: transparent;
+#contact p a {
   color: white;
-  transition: 0.3s;
-  font-family: var(--font);
-  font-size: 1.1rem;
+  text-decoration: none;
+  margin: 0;
+  background: linear-gradient(var(--purple), var(--purple)) bottom / 0 2px no-repeat;
+  background-position: left bottom;
 }
 
-.logo_container .github {
-  background-image: url(svg/github_logo.svg);
-  background-size: cover;
-  display: block;
-  width: 102px;
-  height: 100px;
-  /* transition: 0.3s; */
-}
-.logo_container .instagram {
-  background-image: url(svg/instagram_logo.svg);
-  background-size: cover;
-  display: block;
-  width: 100px;
-  height: 100px;
-}
-.logo_container .linkedin {
-  background-image: url(svg/linkedin_logo.svg);
-  background-size: cover;
-  display: block;
-  width: 99px;
-  height: 100px;
-}
-.logo_container .mail {
-  background-image: url(svg/mail_logo.svg);
-  background-size: cover;
-  background-position: center;
-  display: block;
-  width: 212px;
-  height: 100px;
-  cursor: pointer;
-  color: transparent;
-  margin: 20px;
-}
-
-.logo_container .mail p {
-  visibility: hidden;
+#contact p a:hover {
+  color: var(--purple);
 }
 
 /* Mediaqueries */
@@ -274,7 +226,7 @@ figcaption p {
   }
 
   /* About */
-  #about {
+  .about_container_to_animate {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -283,7 +235,6 @@ figcaption p {
   .me_img_container {
     width: 200px;
     height: 200px;
-    /* margin: auto; */
   }
 
   #about .textwrapper {
@@ -310,31 +261,18 @@ figcaption p {
 
 @media (min-width: 918px) {
   /* About */
-  #about {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-  }
 
   .me_img_container {
     width: 400px;
     height: 400px;
-    /* margin: auto; */
-  }
-
-  #about .textwrapper {
-    width: 50vw;
   }
 
   h2 {
-    margin: 50px 30px 0;
     font-size: 5rem;
   }
 
   p {
-    margin: 0 30px;
     font-size: 1.5rem;
-    width: 40vw;
   }
 
   /* Work */
@@ -344,16 +282,11 @@ figcaption p {
     margin: 70px auto;
   }
   figcaption p {
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding: 0 40px;
   }
   h4 {
     font-size: 2rem;
     margin: -5px 0 0 40px;
   }
-
-  /* img {
-    width: 200px;
-    height: 200px;
-  } */
 }
