@@ -51,16 +51,9 @@ function workSectionFadeInAnimation() {
 }
 
 function contactSectionFadeInAnimation() {
-  // gsap.to("#contact h2", {
-  //   scrollTrigger: "#contact",
-  //   duration: 2,
-  //   opacity: 1,
-  //   start: "center top",
-  // });
   gsap.to("#contact p a", {
     scrollTrigger: "#contact",
     duration: 2,
-    // ease: Linear.easeNone,
     backgroundSize: "100% 2px",
   });
 }
@@ -77,6 +70,12 @@ async function loadSVG() {
   let linkedinSVG = await responseLinkedin.text();
   document.querySelector(".linkedin").innerHTML = linkedinSVG;
   document.querySelector(".linkedin").style.fill = "#c09fe0";
+
+  // Load codepen logo
+  let responseCodepen = await fetch("svg/codepen_logo.svg");
+  let codepenSVG = await responseCodepen.text();
+  document.querySelector(".codepen").innerHTML = codepenSVG;
+  document.querySelector(".codepen").style.fill = "#c09fe0";
 
   hoverOnLogos();
 }

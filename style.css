@@ -185,8 +185,10 @@ figure:hover > figcaption h4 {
 }
 
 .logo_container {
+  display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 375px;
 }
 
 .logo_container button {
@@ -194,7 +196,8 @@ figure:hover > figcaption h4 {
   background-color: transparent;
   color: transparent;
   cursor: pointer;
-  margin: 30px 0 0 30px;
+  /* margin: 30px 0 0 30px; */
+  margin: 50px 20px;
   transition: 0.3s;
 }
 #contact p a {
