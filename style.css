@@ -150,12 +150,9 @@ img {
 
 h4 {
   font-family: var(--font);
-  color: var(--purple);
+  color: white;
   margin: -5px 0 0 20px;
-  background: linear-gradient(var(--purple), var(--purple)) bottom / 0 0.1em no-repeat;
-  transition: 1s background-size;
-  transition: 0.3s;
-  background-position: left bottom;
+  font-size: 1.5rem;
 }
 
 figure {
@@ -163,7 +160,6 @@ figure {
   width: 94vw;
   margin: 70px 10px;
   opacity: 0;
-  cursor: pointer;
 }
 
 figcaption p {
@@ -172,9 +168,24 @@ figcaption p {
   margin: 0;
 }
 
-figure:hover > figcaption h4 {
-  background-size: 10% 0.1em;
+#work button {
+  width: 150px;
+  height: 40px;
+  border-radius: 30px;
+  background-color: transparent;
+  border: 2px solid #c09fe0;
   color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 15px 20px;
+  font-family: var(--font);
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+#work button:hover {
+  background-color: #c09fe0;
+  transition: 0.3s;
 }
 
 /* Contact */
@@ -196,7 +207,6 @@ figure:hover > figcaption h4 {
   background-color: transparent;
   color: transparent;
   cursor: pointer;
-  /* margin: 30px 0 0 30px; */
   margin: 50px 20px;
   transition: 0.3s;
 }
@@ -281,15 +291,23 @@ figure:hover > figcaption h4 {
   /* Work */
 
   figure {
-    max-width: 700px;
+    max-width: 900px;
     margin: 70px auto;
   }
   figcaption p {
-    font-size: 1.2rem;
     padding: 0 40px;
   }
   h4 {
     font-size: 2rem;
     margin: -5px 0 0 40px;
+  }
+
+  img {
+    width: 300px;
+    height: 300px;
+  }
+
+  #work button {
+    margin: 15px 40px;
   }
 }
