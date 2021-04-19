@@ -1,7 +1,7 @@
 /* General */
 
 :root {
-  --purple: #c09fe0;
+  --main_color: #c09fe0;
   --font: "Heebo", sans-serif;
 }
 * {
@@ -15,7 +15,7 @@ body {
 
 .scroll_line {
   width: 3px;
-  background-color: var(--purple);
+  background-color: var(--main_color);
   height: 70px;
   position: absolute;
   bottom: -35px;
@@ -38,26 +38,26 @@ nav ul {
 nav li {
   font-family: var(--font);
   font-weight: 100;
-  color: var(--purple);
+  color: var(--main_color);
   font-size: 1.5rem;
   list-style-type: none;
 }
 
 nav a {
-  color: var(--purple);
+  color: var(--main_color);
   text-decoration: none;
   transform: translateY(-50px);
   display: inline-block;
   opacity: 0;
 
   transition: 0.3s;
-  background: linear-gradient(var(--purple), var(--purple)) bottom / 0 1px no-repeat;
+  background: linear-gradient(var(--main_color), var(--main_color)) bottom / 0 1px no-repeat;
   transition: 0.5s background-size;
   background-position: left bottom;
 }
 
 nav a:after {
-  color: var(--purple);
+  color: var(--main_color);
   text-decoration: none;
 }
 
@@ -76,7 +76,7 @@ nav a:hover {
 h1 {
   font-family: var(--font);
   font-weight: 700;
-  color: var(--purple);
+  color: var(--main_color);
   text-transform: uppercase;
   font-size: 2.7rem;
   position: absolute;
@@ -114,7 +114,7 @@ h1 {
 
 h2 {
   font-family: var(--font);
-  color: var(--purple);
+  color: var(--main_color);
   font-size: 2.7rem;
   text-transform: uppercase;
   margin: 30px 10px 0;
@@ -130,7 +130,7 @@ p {
 
 h3 {
   font-family: var(--font);
-  color: var(--purple);
+  color: var(--main_color);
   margin: 15px 10px 0;
   font-size: 1.5rem;
 }
@@ -173,7 +173,7 @@ figcaption p {
   height: 40px;
   border-radius: 30px;
   background-color: transparent;
-  border: 2px solid #c09fe0;
+  border: 2px solid var(--main_color);
   color: white;
   cursor: pointer;
   transition: 0.3s;
@@ -184,7 +184,7 @@ figcaption p {
 }
 
 #work button:hover {
-  background-color: #c09fe0;
+  background-color: var(--main_color);
   transition: 0.3s;
 }
 
@@ -214,12 +214,12 @@ figcaption p {
   color: white;
   text-decoration: none;
   margin: 0;
-  background: linear-gradient(var(--purple), var(--purple)) bottom / 0 2px no-repeat;
+  background: linear-gradient(var(--main_color), var(--main_color)) bottom / 0 2px no-repeat;
   background-position: left bottom;
 }
 
 #contact p a:hover {
-  color: var(--purple);
+  color: var(--main_color);
 }
 
 /* Mediaqueries */
