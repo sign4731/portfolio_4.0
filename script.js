@@ -8,7 +8,9 @@ function start() {
   aboutSectionFadeInAnimation();
   workSectionFadeInAnimation();
   contactSectionFadeInAnimation();
-  loadSVG();
+  loadSVG("codepen");
+  loadSVG("github");
+  loadSVG("linkedin");
 }
 
 function runStartTextAnimation() {
@@ -58,39 +60,26 @@ function contactSectionFadeInAnimation() {
   });
 }
 
-async function loadSVG() {
-  // Load github logo
-  let responseGithub = await fetch("svg/github_logo.svg");
-  let githubSVG = await responseGithub.text();
-  document.querySelector(".github").innerHTML = githubSVG;
-  document.querySelector(".github").style.fill = "#c09fe0";
-
-  // Load linkedin logo
-  let responseLinkedin = await fetch("svg/linkedin_logo.svg");
-  let linkedinSVG = await responseLinkedin.text();
-  document.querySelector(".linkedin").innerHTML = linkedinSVG;
-  document.querySelector(".linkedin").style.fill = "#c09fe0";
-
-  // Load codepen logo
-  let responseCodepen = await fetch("svg/codepen_logo.svg");
-  let codepenSVG = await responseCodepen.text();
-  document.querySelector(".codepen").innerHTML = codepenSVG;
-  document.querySelector(".codepen").style.fill = "#c09fe0";
+async function loadSVG(logo) {
+  let response = await fetch(`svg/${logo}_logo.svg`);
+  let SVG = await response.text();
+  document.querySelector(`.${logo}`).innerHTML = SVG;
+  document.querySelector(`.${logo}`).style.fill = "#c09fe0";
 
   hoverOnLogos();
 }
 
 function hoverOnLogos() {
-  document.querySelectorAll("button").forEach((button) => {
-    button.addEventListener("mouseover", function () {
+  document.querySelectorAll(".logo_container a").forEach((a) => {
+    a.addEventListener("mouseover", function () {
       console.log("change color");
-      button.style.fill = "white";
+      a.style.fill = "white";
     });
   });
-  document.querySelectorAll("button").forEach((button) => {
-    button.addEventListener("mouseout", function () {
+  document.querySelectorAll(".logo_container a").forEach((a) => {
+    a.addEventListener("mouseout", function () {
       console.log("change color");
-      button.style.fill = "#c09fe0";
+      a.style.fill = "#c09fe0";
     });
   });
 }
